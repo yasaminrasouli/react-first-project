@@ -11,7 +11,6 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // ارسال درخواست به API
       const response = await axios.post(
         "https://7afb70a0-e13a-401f-b015-d5658da3aefb.mock.pstmn.io/login",
         {
@@ -21,16 +20,13 @@ const Login = () => {
       );
 
       if (response.data.success) {
-        // ورود موفقیت‌آمیز
         setIsLoggedIn(true);
         setError("");
         localStorage.setItem("authToken", response.data.token);
       } else {
-        // خطا در صورت نادرست بودن اطلاعات ورودی
         setError("Invalid username or password");
       }
     } catch (error) {
-      // مدیریت خطاها
       setError("An error occurred while trying to log in");
       console.error(error);
     }
